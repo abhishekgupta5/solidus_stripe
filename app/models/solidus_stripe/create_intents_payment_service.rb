@@ -62,7 +62,6 @@ module SolidusStripe
             last_digits: intent_card['last4'],
             gateway_payment_profile_id: intent_customer_profile,
             name: card_holder_name || address_full_name,
-            address_attributes: address_attributes
           }
         }]
       }

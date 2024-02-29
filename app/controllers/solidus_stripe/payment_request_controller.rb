@@ -21,10 +21,7 @@ module SolidusStripe
     def update_order
       current_order.restart_checkout_flow
 
-      address = SolidusStripe::AddressFromParamsService.new(
-        shipping_address_from_params,
-        spree_current_user
-      ).call
+      address = current_order.bill_address
 
       if address.valid?
         SolidusStripe::PrepareOrderForPaymentService.new(address, self).call
