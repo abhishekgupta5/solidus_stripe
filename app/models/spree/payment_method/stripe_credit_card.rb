@@ -26,7 +26,7 @@ module Spree
             payment_request: {
               country: preferred_stripe_country,
               currency: order.currency.downcase,
-              label: "Payment for order #{order.number}",
+              label: "Abunda",
               amount: (order.total * 100).to_i
             }
           ) if payment_request?
