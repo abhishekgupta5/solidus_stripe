@@ -33,7 +33,6 @@
 
         var onButtonMount = function(result) {
           var id = 'payment-request-button';
-          console.log(result);
           if (result && result.applePay) {
             prButton.mount('#' + id);
           } else {
