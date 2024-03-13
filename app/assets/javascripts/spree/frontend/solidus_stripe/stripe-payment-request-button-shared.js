@@ -33,14 +33,27 @@
 
         var onButtonMount = function(result) {
           var id = 'payment-request-button';
-
-          if (result) {
+          console.log(result);
+          if (result && result.applePay) {
             prButton.mount('#' + id);
           } else {
             document.getElementById(id).style.display = 'none';
+            var button = document.getElementById("apple-pay-later-button");
+            var radio = button.querySelector('.payment-select');
+            var card = button.querySelector('.payment-method-card');
+            var badge = card.querySelector('.badge-light');
+            var alert = document.getElementById("apple-pay-alert");
+            card.classList.add('coming-soon');
+            radio.disabled = true
+            badge.classList.remove('badge-light');
+            badge.classList.add('badge-warning');
+            badge.innerHTML = "Must use eligible Apple device"
+            alert.classList.remove('alert-info');
+            alert.classList.add('alert-warning');
+            alert.innerHTML = "To use Apple Pay Later, you must be using an <strong>eligible Apple device</strong>. Please select a different payment plan."
           }
           if (typeof this.onPrButtonMounted === 'function') {
-            this.onPrButtonMounted(id, result);
+            this.onPrButtonMounted(id, result && result.applePay);
           }
         }
         paymentRequest.canMakePayment().then(onButtonMount.bind(this));
