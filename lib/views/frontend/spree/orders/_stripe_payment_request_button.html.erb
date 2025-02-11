@@ -3,6 +3,7 @@
     <div id="payment-request-button"
       data-stripe-config="<%= cart_checkout_payment_method.stripe_config(current_order).to_json %>"
       data-order-token="<%= current_order.guest_token %>"
+      data-order-number="<%= current_order.number %>"
       data-submit-url="<%= api_checkout_path(current_order.number) %>"
       data-complete-url="<%= checkout_path %>"
       class="payment-request-button">
